@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Database_WPF.DataSetTableAdapters;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -10,7 +11,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Linq;
-using Database_WPF.DataSetTableAdapters;
 
 namespace Database_WPF
 {
@@ -26,8 +26,14 @@ namespace Database_WPF
         public string Name;
         public string Password;
 
-        private UsersTableAdapter usersTableAdapter;
+        private UsersTableAdapter usersTableAdapter = new UsersTableAdapter();
         private DataSet dataSet = new DataSet();
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            usersTableAdapter.Fill(dataSet.Users);
+            DataContext = dataSet.Users.DefaultView;
+
+        }
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
             var query = from user in dataSet.Users
@@ -44,6 +50,8 @@ namespace Database_WPF
             else
             {
                 MessageBox.Show("User Does Not Exist", "Submit", MessageBoxButton.OK, MessageBoxImage.Error);
+                txtName.Clear();
+                txtPassword.Clear();
             }
         }
 
@@ -62,11 +70,6 @@ namespace Database_WPF
             txtPassword.Clear();
 
         }
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            usersTableAdapter.Fill(dataSet.Users);
-            DataContext = dataSet.Users.DefaultView;
-
-        }
+    
     }
 }

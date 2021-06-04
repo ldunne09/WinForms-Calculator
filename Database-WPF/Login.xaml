@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Database_WPF"
         mc:Ignorable="d"
         Loaded="Window_Loaded"
-        Title="LoginWindow" Height="350" Width="300">
+        Title="Login" Height="350" Width="300">
 
     <Border Background="Brown" CornerRadius="40" Margin="20">
         <StackPanel>
@@ -17,10 +17,10 @@
             <TextBox x:Name="txtName" Text="{Binding Path=Login, Mode=TwoWay}"/>
             <Label Content="Password" Foreground="White"/>
             <TextBox x:Name="txtPassword" Text="{Binding Path=Login , Mode=TwoWay}"/>
-            <StackPanel>
-                <Button x:Name="SubmitButton" Content="Submit" Click="SubmitButton_Click"/>
-                <Button x:Name="RegistarButton" Content="Register" Click="RegistarButton_Click"/>
-            </StackPanel>
+                <StackPanel>
+                    <Button x:Name="SubmitButton" Content="Submit" Click="SubmitButton_Click"/>
+                    <Button x:Name="RegistarButton" Content="Register" Click="RegistarButton_Click"/>
+                </StackPanel>
             </StackPanel>
     </Border>
 </Window>
